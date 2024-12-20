@@ -125,6 +125,12 @@ class Session(requests.Session):
             return
         raise Exception("tls_config must is TLSConfig class or dict class")
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()
+
     def request(
             self,
             method,
